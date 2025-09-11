@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tägliche Losungen (Elberfelder 1905)</title>
+  <title>Tägliche Losungen</title>
   <style>
     body {
       font-family: Georgia, serif;
@@ -28,7 +28,7 @@
       font-size: 0.9em;
       color: #555;
     }
-    button {
+    button, select {
       margin-top: 2em;
       padding: 0.7em 1.5em;
       font-size: 1em;
@@ -37,36 +37,74 @@
       background: #2c3e50;
       color: #fff;
     }
+    select {
+      margin-right: 1em;
+    }
   </style>
 </head>
 <body>
-  <h1>Heutige Losungen<br>(Elberfelder 1905)</h1>
+  <h1>Tägliche Losungen</h1>
+  <div>
+    <select id="translation" onchange="changeTranslation()">
+      <option value="elberfelder1985">Elberfelder 1985</option>
+      <option value="guteNachricht">Gute Nachricht</option>
+      <option value="neueEvangelistische">Neue Evangelistische Übersetzung</option>
+    </select>
+    <button onclick="neueLosung()">Neue Losung</button>
+  </div>
   <div id="losungen">
     <p>Lade Verse …</p>
   </div>
-  <button onclick="neueLosung()">Neue Losung</button>
 
   <script>
-    // --- Beispielverse (du kannst sie später erweitern) ---
-    const altesTestament = [
-      {text: "Der HERR ist mein Hirte, mir wird nichts mangeln.", quelle: "Psalm 23,1"},
-      {text: "Der Himmel erzählt die Herrlichkeit Gottes.", quelle: "Psalm 19,2"},
-      {text: "So spricht der HERR: Ruf mich an in der Not, so will ich dich erretten.", quelle: "Psalm 50,15"}
-    ];
+    const translations = {
+      elberfelder1985: {
+        altesTestament: [
+          {text: "Der HERR ist mein Hirte, mir wird nichts mangeln.", quelle: "Psalm 23,1"},
+          {text: "Der Himmel erzählt die Herrlichkeit Gottes.", quelle: "Psalm 19,2"}
+        ],
+        neuesTestament: [
+          {text: "Jesus Christus ist derselbe gestern und heute und in Ewigkeit.", quelle: "Hebräer 13,8"},
+          {text: "Ich bin der Weg und die Wahrheit und das Leben.", quelle: "Johannes 14,6"}
+        ]
+      },
+      guteNachricht: {
+        altesTestament: [
+          {text: "Gott ist unsere Zuflucht und Stärke.", quelle: "Psalm 46,2"},
+          {text: "Der HERR wird für euch kämpfen, und ihr werdet stille sein.", quelle: "2. Mose 14,14"}
+        ],
+        neuesTestament: [
+          {text: "So sehr hat Gott die Welt geliebt, dass er seinen einzigen Sohn gab.", quelle: "Johannes 3,16"},
+          {text: "Der Friede Gottes, der alles Verstehen übersteigt, wird eure Herzen bewahren.", quelle: "Philipper 4,7"}
+        ]
+      },
+      neueEvangelistische: {
+        altesTestament: [
+          {text: "Ich habe dich je und je geliebt.", quelle: "Jeremia 31,3"},
+          {text: "Freut euch und jubelt, ihr Gerechten!", quelle: "Psalm 32,11"}
+        ],
+        neuesTestament: [
+          {text: "Ich bin bei euch alle Tage bis zum Ende der Welt.", quelle: "Matthäus 28,20"},
+          {text: "Kommt her zu mir, alle, die ihr mühselig und beladen seid.", quelle: "Matthäus 11,28"}
+        ]
+      }
+    };
 
-    const neuesTestament = [
-      {text: "Jesus Christus ist derselbe gestern und heute und in Ewigkeit.", quelle: "Hebräer 13,8"},
-      {text: "Ich bin der Weg und die Wahrheit und das Leben.", quelle: "Johannes 14,6"},
-      {text: "Denn also hat Gott die Welt geliebt, dass er seinen eingeborenen Sohn gab.", quelle: "Johannes 3,16"}
-    ];
+    let aktuelleUebersetzung = translations.elberfelder1985;
+
+    function changeTranslation() {
+      const selection = document.getElementById("translation").value;
+      aktuelleUebersetzung = translations[selection];
+      neueLosung();
+    }
 
     function zufallsVers(liste) {
       return liste[Math.floor(Math.random() * liste.length)];
     }
 
     function neueLosung() {
-      const at = zufallsVers(altesTestament);
-      const nt = zufallsVers(neuesTestament);
+      const at = zufallsVers(aktuelleUebersetzung.altesTestament);
+      const nt = zufallsVers(aktuelleUebersetzung.neuesTestament);
 
       document.getElementById("losungen").innerHTML = `
         <div class="verse">
