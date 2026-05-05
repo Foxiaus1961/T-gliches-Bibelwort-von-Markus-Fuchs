@@ -25,7 +25,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: 'Noto Sans', sans-serif;
   background-color: var(--cream);
   color: var(--ink);
   min-height: 100vh;
@@ -44,6 +44,7 @@ header {
 .site-label {
   display: inline-block;
   font-size: 0.72rem;
+  font-weight: 300;           /* light — recedes, sets context */
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--mocha);
@@ -52,7 +53,7 @@ header {
 
 header h1 {
   font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-  font-weight: normal;
+  font-weight: 300;           /* light — large size carries the visual weight */
   color: var(--espresso);
   line-height: 1.2;
 }
@@ -95,14 +96,16 @@ header h1 {
 
 .selector-label {
   font-size: 0.68rem;
+  font-weight: 600;           /* semibold — small text needs weight to read clearly */
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--mocha);
 }
 
 .selector-input {
-  font-family: 'Georgia', serif;
+  font-family: 'Noto Sans', sans-serif;
   font-size: 0.88rem;
+  font-weight: 400;           /* regular — user-selected value, neutral */
   color: var(--ink);
   background: var(--parchment);
   border: 1px solid var(--sand);
@@ -127,8 +130,9 @@ header h1 {
 /* ── Randomise button ── */
 .btn-new {
   padding: 0.7em 2.2em;
-  font-family: 'Georgia', serif;
+  font-family: 'Noto Sans', sans-serif;
   font-size: 0.88rem;
+  font-weight: 600;           /* semibold — CTA must stand out */
   letter-spacing: 0.08em;
   color: var(--cream);
   background: var(--espresso);
@@ -173,6 +177,7 @@ header h1 {
 .verse-tag {
   display: inline-block;
   font-size: 0.68rem;
+  font-weight: 600;           /* semibold — badge at small size needs weight */
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--mocha);
@@ -185,6 +190,7 @@ header h1 {
 
 .verse-text {
   font-size: 1.08rem;
+  font-weight: 400;           /* regular — primary reading content */
   line-height: 1.8;
   color: var(--ink);
   font-style: italic;
@@ -194,6 +200,7 @@ header h1 {
 .verse-ref {
   margin-top: 1.1rem;
   font-size: 0.78rem;
+  font-weight: 300;           /* light — caption-level, should recede */
   letter-spacing: 0.07em;
   color: var(--mocha);
   font-style: normal;
@@ -203,6 +210,7 @@ header h1 {
 .loading {
   grid-column: 1 / -1;
   font-size: 0.95rem;
+  font-weight: 300;           /* light — transient state, visually soft */
   color: var(--mocha);
   padding: 2rem 0;
   text-align: center;
@@ -213,6 +221,7 @@ header h1 {
 footer {
   margin-top: 3.5rem;
   font-size: 0.72rem;
+  font-weight: 300;           /* light — lowest hierarchy on the page */
   color: var(--sand);
   letter-spacing: 0.07em;
   text-align: center;
