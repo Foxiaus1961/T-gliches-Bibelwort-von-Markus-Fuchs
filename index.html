@@ -1,87 +1,53 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tägliche Losungen (Elberfelder 1905)</title>
-  <style>
-    body {
-      font-family: Georgia, serif;
-      background-color: #f9f9f9;
-      color: #222;
-      text-align: center;
-      padding: 2em;
-    }
-    h1 {
-      font-size: 1.5em;
-      color: #2c3e50;
-    }
-    .verse {
-      margin: 1.5em 0;
-      padding: 1em;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .quelle {
-      margin-top: 0.5em;
-      font-size: 0.9em;
-      color: #555;
-    }
-    button {
-      margin-top: 2em;
-      padding: 0.7em 1.5em;
-      font-size: 1em;
-      border: none;
-      border-radius: 6px;
-      background: #2c3e50;
-      color: #fff;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tägliche Losungen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
-  <h1>Heutige Losungen<br>(Elberfelder 1905)</h1>
-  <div id="losungen">
-    <p>Lade Verse …</p>
-  </div>
-  <button onclick="neueLosung()">Neue Losung</button>
 
-  <script>
-    // --- Beispielverse (du kannst sie später erweitern) ---
-    const altesTestament = [
-      {text: "Der HERR ist mein Hirte, mir wird nichts mangeln.", quelle: "Psalm 23,1"},
-      {text: "Der Himmel erzählt die Herrlichkeit Gottes.", quelle: "Psalm 19,2"},
-      {text: "So spricht der HERR: Ruf mich an in der Not, so will ich dich erretten.", quelle: "Psalm 50,15"}
-    ];
+  <header>
+    <span class="site-label">Tägliche Losungen</span>
+    <h1 id="date-display"></h1>
+    <div class="divider"></div>
+  </header>
 
-    const neuesTestament = [
-      {text: "Jesus Christus ist derselbe gestern und heute und in Ewigkeit.", quelle: "Hebräer 13,8"},
-      {text: "Ich bin der Weg und die Wahrheit und das Leben.", quelle: "Johannes 14,6"},
-      {text: "Denn also hat Gott die Welt geliebt, dass er seinen eingeborenen Sohn gab.", quelle: "Johannes 3,16"}
-    ];
+  <section class="controls">
 
-    function zufallsVers(liste) {
-      return liste[Math.floor(Math.random() * liste.length)];
-    }
+    <div class="selector-row">
+      <div class="selector-group">
+        <label class="selector-label" for="lang-select" id="label-lang">Sprache</label>
+        <select class="selector-input" id="lang-select">
+          <option value="de">Deutsch</option>
+          <option value="en">English</option>
+        </select>
+      </div>
 
-    function neueLosung() {
-      const at = zufallsVers(altesTestament);
-      const nt = zufallsVers(neuesTestament);
+      <div class="selector-group">
+        <label class="selector-label" for="trans-select" id="label-trans">Übersetzung</label>
+        <select class="selector-input" id="trans-select">
+          <!-- populated by JS -->
+        </select>
+      </div>
+    </div>
 
-      document.getElementById("losungen").innerHTML = `
-        <div class="verse">
-          <p><strong>AT:</strong> ${at.text}</p>
-          <p class="quelle">${at.quelle}</p>
-        </div>
-        <div class="verse">
-          <p><strong>NT:</strong> ${nt.text}</p>
-          <p class="quelle">${nt.quelle}</p>
-        </div>
-      `;
-    }
+    <button class="btn-new" id="btn-new">Neue Losung</button>
 
-    // Erste Losung beim Laden anzeigen
-    neueLosung();
-  </script>
+  </section>
+
+  <main id="losungen">
+    <p class="loading">Lade Verse …</p>
+  </main>
+
+  <footer>
+    <p>© Markus Fuchs · Täglich Wort</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
